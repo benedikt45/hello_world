@@ -7,7 +7,7 @@ class ServerHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
-        self.wfile.write('answer'.encode('utf-8'))
+        #self.wfile.write('answer'.encode('utf-8'))
 
     def do_POST(self):
         print('POST request, path:', self.path)
