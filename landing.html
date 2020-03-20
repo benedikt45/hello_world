@@ -26,7 +26,7 @@
 				btn = mainMenu[i].onclick = function(e){
 					var httpRequest = new XMLHttpRequest();
 					if (e.target.innerText=='Погода') {
-						httpRequest.open('GET', 'http://localhost/getWeather');
+						httpRequest.open('GET', 'http://localhost/getPageWeather');
 					} else if (e.target.innerText=='Валюта') {
 						httpRequest.open('GET', 'http://localhost/getCurrency');
 					}

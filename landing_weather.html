@@ -1,0 +1,50 @@
+<!DOCType html>
+<html>
+	<head>
+		<meta charset='Windows-1251'>
+		<link rel='stylesheet' href='styles.css' type='text/css'>
+		<title>Это мой сайт</title>
+	</head>
+	<body>
+		<div class='wrapper'>
+			<nav>
+				<ul>
+					<li class='focus'><a href='#'>Погода</a></li>
+					<li><a href='#'>Валюта</a></li>
+					<!--<li><input type='button' value='Валюта'>
+					<li><input type='button' value='Погода'>-->
+				</ul>
+			</nav>
+			<!--<form name='searchWeather' action='#' method='get' class='form'>-->
+			<div class='form'>
+				<label for='inputCity'>Введите интересуемый город:</label>
+				<input type='text' name='inputCity'>
+				<button type='submit'>GO</button>
+			</div>
+			<div id='answer'>
+			
+			<div>
+			<!--</form>-->
+		</div>
+		<script>
+			var city = document.getElementsByName('inputCity')[0].value;
+			var btn = document.querySelector('button');
+			
+			btn.onclick = function() {
+				xhrRequest = new XMLHttpRequest();
+				xhrRequest.open('POST', 'http://localhost/getWeather');
+				xhrRequest.responseType = 'text';
+				xhrRequest.onload = function() {
+					if (xhrRequest.readyState == 4){
+						if (xhrRequest.status == 200) {
+							serverAnswer = xhrRequest.responseText;
+							document.getElementById("answer").innerHTML = serverAnswer;
+						}
+					}
+				}
+				xhrRequest.send(city);
+			}
+			
+		</script>
+	</body>
+</html>

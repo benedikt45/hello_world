@@ -8,7 +8,7 @@ class ServerHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
-        if self.path == '/getWeather':
+        if self.path == '/getPageWeather':
             data = {
                 'buttons': [
                     {'value': 'Get weather',
@@ -22,11 +22,19 @@ class ServerHandler(BaseHTTPRequestHandler):
             jsonData = json.dumps(data)
             #self.wfile.write(jsonData.encode('utf-8'))
             self.wfile.write(html.encode('utf-8'))
-        elif self.path == '/getCurrency':
-            self.wfile.write('currency'.encode('utf-8'))
+        #elif self.path == '/getWeather':
+        #    self.wfile.write('currency'.encode('utf-8'))
 
     def do_POST(self):
         print('POST request, path:', self.path)
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.end_headers()
+
+        if self.path == '/getWeather':
+            city = self.rfile.read(int(self.headers['Content-Length']))
+            #self.wfile.write('currency'.encode('utf-8'))
 
 
 def start_server():
