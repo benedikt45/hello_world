@@ -18,7 +18,11 @@ class ServerHandler(BaseHTTPRequestHandler):
                     {'name': 'inputCity'}
                 ]
             }
-            html = '<p>All icons found at the Noun Project:</p>'
+            html = '<label for=''inputCity''>Введите интересуемый город:</label> \
+				<input type=''text'' name=''inputCity''>\
+				<button type=''submit''>GO</button>\
+				<div id=''answer''>\
+			    <div>'
             jsonData = json.dumps(data)
             #self.wfile.write(jsonData.encode('utf-8'))
             self.wfile.write(html.encode('utf-8'))

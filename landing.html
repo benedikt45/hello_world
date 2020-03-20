@@ -4,6 +4,7 @@
 		<meta charset='Windows-1251'>
 		<link rel='stylesheet' href='styles.css' type='text/css'>
 		<title>Это мой сайт</title>
+		
 	</head>
 	<body>
 		<div class='wrapper'>
@@ -15,39 +16,13 @@
 					<li><input type='button' value='Погода'>-->
 				</ul>
 			</nav>
-			<p id='welcome'>
-				<i>Добро пожаловать!</i>
-			</p>
+			<div class='form'>
+				<p id='welcome'>
+					<i>Добро пожаловать!</i>
+				</p>
+			</div>
 		</div>
-		
-		<script>
-			var mainMenu = document.querySelectorAll('a');
-			for (var i = 0; i<mainMenu.length; i++) {
-				btn = mainMenu[i].onclick = function(e){
-					var httpRequest = new XMLHttpRequest();
-					if (e.target.innerText=='Погода') {
-						httpRequest.open('GET', 'http://localhost/getPageWeather');
-					} else if (e.target.innerText=='Валюта') {
-						httpRequest.open('GET', 'http://localhost/getCurrency');
-					}
-					
-					httpRequest.responseType = 'text';
-					httpRequest.onload = function(){
-						if (httpRequest.readyState == 4){
-							if (httpRequest.status == 200) {
-								serverAnswer = httpRequest.responseText;
-								//var jsonResponse = JSON.parse(serverAnswer);
-								document.getElementById("welcome").innerHTML = serverAnswer;
-							}
-						}
-					}
-					httpRequest.send();
-					for (var i = 0; i<mainMenu.length; i++) {
-						mainMenu[i].parentNode.removeAttribute('class');
-					}
-					e.target.parentNode.setAttribute('class', 'focus');
-				}		
-			}
-		</script>
+		<script src='script_for_main.js'></script>
+		<script src='script_for_weather.js'></script>
 	</body>
 </html>
