@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import json
 
 class ServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -7,7 +8,20 @@ class ServerHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
-        #self.wfile.write('answer'.encode('utf-8'))
+        if self.path == '/getWeather':
+            data = {
+                'buttons': [
+                    {'value': 'Get weather',
+                    'id': 'pushButton'}
+                ],
+                'text': [
+                    {'name': 'inputCity'}
+                ]
+            }
+            jsonData = json.dumps(data)
+            self.wfile.write(jsonData.encode('utf-8'))
+        elif self.path == '/getCurrency':
+            self.wfile.write('currency'.encode('utf-8'))
 
     def do_POST(self):
         print('POST request, path:', self.path)

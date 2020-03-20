@@ -25,12 +25,18 @@
 			for (var i = 0; i<mainMenu.length; i++) {
 				btn = mainMenu[i].onclick = function(e){
 					var httpRequest = new XMLHttpRequest();
-					httpRequest.open('GET', 'http://localhost/');
+					if (e.target.innerText=='Погода') {
+						httpRequest.open('GET', 'http://localhost/getWeather');
+					} else if (e.target.innerText=='Валюта') {
+						httpRequest.open('GET', 'http://localhost/getCurrency');
+					}
+					
 					httpRequest.responseType = 'text';
 					httpRequest.onload = function(){
 						if (httpRequest.readyState == 4){
 							if (httpRequest.status == 200) {
 								serverAnswer = httpRequest.responseText;
+								var jsonResponse = JSON.parse(serverAnswer);
 								//elementP = document.querySelector('p');
 								//elementP.removeAttribute('id');
 								//alert(serverAnswer);
