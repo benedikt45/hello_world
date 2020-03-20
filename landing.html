@@ -36,10 +36,8 @@
 						if (httpRequest.readyState == 4){
 							if (httpRequest.status == 200) {
 								serverAnswer = httpRequest.responseText;
-								var jsonResponse = JSON.parse(serverAnswer);
-								//elementP = document.querySelector('p');
-								//elementP.removeAttribute('id');
-								//alert(serverAnswer);
+								//var jsonResponse = JSON.parse(serverAnswer);
+								document.getElementById("welcome").innerHTML = serverAnswer;
 							}
 						}
 					}

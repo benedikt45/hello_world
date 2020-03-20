@@ -18,8 +18,10 @@ class ServerHandler(BaseHTTPRequestHandler):
                     {'name': 'inputCity'}
                 ]
             }
+            html = '<p>All icons found at the Noun Project:</p>'
             jsonData = json.dumps(data)
-            self.wfile.write(jsonData.encode('utf-8'))
+            #self.wfile.write(jsonData.encode('utf-8'))
+            self.wfile.write(html.encode('utf-8'))
         elif self.path == '/getCurrency':
             self.wfile.write('currency'.encode('utf-8'))
 
