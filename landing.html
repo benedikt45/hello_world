@@ -1,33 +1,48 @@
 <!DOCType html>
 <html>
 	<head>
-		<meta charset="Windows-1251">
-		<link rel="stylesheet" href="styles.css" type="text/css">
+		<meta charset='Windows-1251'>
+		<link rel='stylesheet' href='styles.css' type='text/css'>
 		<title>Это мой сайт</title>
 	</head>
 	<body>
-		<div class="wrapper">
+		<div class='wrapper'>
 			<nav>
 				<ul>
-					<li><a href="#">Погода</a></li>
-					<li><a href="#">Валюта</a></li>
-					<!--<li><input type="button" value="Валюта">
-					<li><input type="button" value="Погода">-->
+					<li><a href='#'>Погода</a></li>
+					<li><a href='#'>Валюта</a></li>
+					<!--<li><input type='button' value='Валюта'>
+					<li><input type='button' value='Погода'>-->
 				</ul>
 			</nav>
+			<p id='welcome'>
+				<i>Добро пожаловать!</i>
+			</p>
 		</div>
 		
 		<script>
-			var mainMenu = document.querySelectorAll("a");
-			
+			var mainMenu = document.querySelectorAll('a');
 			for (var i = 0; i<mainMenu.length; i++) {
 				btn = mainMenu[i].onclick = function(e){
+					var httpRequest = new XMLHttpRequest();
+					httpRequest.open('GET', 'http://localhost/');
+					httpRequest.responseType = 'text';
+					httpRequest.onload = function(){
+						if (httpRequest.readyState == 4){
+							if (httpRequest.status == 200) {
+								serverAnswer = httpRequest.responseText;
+								//elementP = document.querySelector('p');
+								//elementP.removeAttribute('id');
+								//alert(serverAnswer);
+							}
+						}
+					}
+					httpRequest.send();
 					for (var i = 0; i<mainMenu.length; i++) {
 						mainMenu[i].parentNode.removeAttribute('class');
 					}
 					e.target.parentNode.setAttribute('class', 'focus');
 				}		
-				
 			}
 		</script>
 	</body>

@@ -20,3 +20,8 @@ a {
 	background-color: gray;
 	opacity: 0.5;
 }
+
+#welcome {
+	margin-top: 40px;
+	text-align: center;
+}
